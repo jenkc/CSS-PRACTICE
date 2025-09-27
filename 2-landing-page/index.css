@@ -1,0 +1,116 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins';
+}
+
+.heading-container {
+  background: #5200FF;
+  color: white;
+  text-align: center;
+  /* make sure children are positioned relative to this parent container */
+  position: relative;
+}
+
+.heading-container:before {
+  content: '';
+  /* make sure the pseudo element is positioned relative to the parent container and absolute on the child */
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('bg.jpg');
+  background-size: cover;
+  background-position: 100%;
+  opacity: .22;
+}
+
+.heading-content {
+  position: relative;
+}
+
+.heading-container, .form-container {
+  /*  top/bottom padding are converted to rem units 
+        108px(figma) / 16px(font-size) = 6.75rem
+      left/right padding will automatically adjust to 
+        8vw (% of viewport width) 
+  */
+  padding: 6.75rem 8vw; 
+}
+
+h1 {
+  margin: 0;
+  font-family: 'Bebas Neue';
+  font-weight: normal;
+  font-size: 4rem; /* 64px / 16px(root) = 4rem */
+  line-height: 1.2em; /* 1.2 x relative to h1 font-size */
+}
+
+p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+label {
+  display: block;
+  font-size: 1.125rem; /* 18px / 16px(root) = 1.125rem */
+  margin-bottom: .77rem; /* 14px / 18px(label, see above) = .77rem */
+}
+
+input {
+  width: 100%;
+  background: #EDEDED;
+  border: 1px solid #C7C7C7;
+  font-size: 1rem;
+  padding: .75rem;
+  margin-bottom: 2.5em; /* 40px / 16px(root) = 2.5rem */
+}
+
+
+button {
+  width: 100%;
+  background: #5200FF;
+  padding: 1em;
+  color: white;
+  border: none;
+  font-size: 1.125rem; /* 18px / 16px(root)  */
+  cursor: pointer;
+}
+
+/* split FORM into two columns when on small tablet */
+@media only screen and (min-width: 770px) {
+  .form-container {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 2em;
+  }
+  button {
+    width: auto;
+    padding: 1em 2.5em;
+  }
+}
+
+/* split PAGE into two columns when on desktop */
+@media only screen and (min-width: 1260px) {
+  body {
+    display: flex;
+  }
+  .heading-container, .form-container {
+    flex-basis: 0;
+    flex-grow: 1;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+  }
+  .heading-container {
+    text-align: left;
+  }
+
+}
